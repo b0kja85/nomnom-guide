@@ -17,15 +17,16 @@
       <div class="col-md-4 mb-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">{{ recipe.title }}</h5>
+            <h5 class="card-title">
+              <a class="text-decoration-none text-reset fs-1" href="{% url 'recipes-detail' recipe.pk %}">{{ recipe.title }}</a>
+            </h5>
             <p class="card-text">{{ recipe.description|truncatechars:100 }}</p>
-            <!-- Action Buttons -->
             {% if recipe.author == user or user.is_staff %}
-            <a class="btn btn-outline-info" href="{% url 'recipes-update' recipe.id %}">Update</a>
-            <a class="btn btn-outline-danger" href="{% url 'recipes-delete' recipe.id %}">Delete</a>
+              <a class="btn btn-outline-info" href="{% url 'recipes-update' recipe.id %}">Update</a>
+              <a class="btn btn-outline-danger" href="{% url 'recipes-delete' recipe.id %}">Delete</a>
             {% endif %}
           </div>
-        </div>
+        </div>        
       </div>
       {% endfor %}
     </div>
