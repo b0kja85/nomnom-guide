@@ -34,7 +34,7 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = models.Recipe
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'ingredients', 'instructions']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
