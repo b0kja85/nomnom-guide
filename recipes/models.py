@@ -6,6 +6,8 @@ from django.urls import reverse
 class Recipe(models.Model):
   title = models.CharField(max_length=100)
   description = models.TextField()
+  ingredients = models.TextField()
+  instructions = models.TextField()
 
   author = models.ForeignKey(User, on_delete=models.CASCADE)
 
