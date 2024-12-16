@@ -26,6 +26,7 @@
         <a class="navbar-brand" href="{% url 'recipes-home' %}">
           <img src="{% static 'images/nomnom.png' %}" style="width: 200px; height: auto;">
         </a>
+        
         <button
           class="navbar-toggler"
           type="button"
@@ -37,14 +38,10 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             {% if not user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link " style="height: 50px; line-height: 50px;" href="{% url 'recipes-create' %}" 
-                >Submit Recipe</a
-              >
-            </li>
             <li class="nav-item">
                 <a class="nav-link bi bi-person fs-3" href="{% url 'user-profile' %}">
                 </a>
@@ -54,15 +51,16 @@
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'user-profile' %}"
-                >My Profile</a
+              <a class="nav-link "  href="{% url 'recipes-create' %}" 
+                >Submit Recipe</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'user-logout' %}"
-                >Logout</a
+              <a class="nav-item nav-link bi bi-person" href="{% url 'user-profile' %} "
+                >  Profile</a
               >
             </li>
+            
             {% endif %}
           </ul>
         </div>

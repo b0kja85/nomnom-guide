@@ -7,5 +7,10 @@
   <h1>{{ user.username}}</h1>
 </div>
 
+<form method="POST" action="{% url 'user-logout' %}">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+
 <!-- -->
 {% endblock content %}
