@@ -8,5 +8,3 @@ recipes/migrations/__pycache__/
 users/__pycache__/
 users/migrations/__pycache__/
 
-# DB
-db.sqlite3
