@@ -16,6 +16,16 @@
       </h6>
   </div>
 </div>
+<h2>Ingredients</h2>
+<p class="card-text fst-italic">
+    {{ object.ingredients|linebreaksbr }}
+  </p>
+<h2>Instructions</h2>
+<p class="card-text fst-italic">
+    {{ object.instructions|linebreaksbr }}
+  </p>
+  
+  
 
 
 {% if object.author == user or user.is_staff %}
