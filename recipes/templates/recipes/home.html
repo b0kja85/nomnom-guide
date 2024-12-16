@@ -1,7 +1,14 @@
 {% extends "recipes/base.html" %}
 
 {% block content %}
-<h1>Recipes:</h1>
+<h1>Discover Quick, Easy, and Delicious Recipes with NomNom Guide!</h1>
+<p>NomNom Guide is your ultimate recipe-sharing hub, designed for busy people, students, and anyone looking for simple yet tasty meals. Submit your favorite recipes or explore a world of quick and easy dishes that fit your schedule and your lifestyle. Cooking made stress-free—because we know life’s too hectic for complicated meals!</p>
+<div class="input-group mb-4 mt-5">
+    <input type="text" class="form-control custom-focus" placeholder="Search Dish" aria-label="Search" aria-describedby="search-addon">
+    <button class="btn" type="button" id="search-addon">
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
 
 <div class="card-deck">
     {% if page_obj %}
@@ -43,4 +50,11 @@
         {% endif %}
     </ul>
 </nav>
+
+<style>
+    .custom-focus:focus {
+      border-color:rgb(0, 0, 0); 
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0); 
+    }
+  </style>
 {% endblock content %}
