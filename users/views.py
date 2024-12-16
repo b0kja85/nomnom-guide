@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from recipes.models import Recipe
 from . import forms
 
 # Create your views here.
@@ -21,4 +22,6 @@ def register(request):
 
 @login_required()
 def profile(request):
-  return render(request, 'users/profile.html')
+  # Filter recipes by the logged-in user
+  recipes = Recipe.objects.filter(author=request.user)
+  return render(request, 'users/profile.html', {"recipes": recipes})
