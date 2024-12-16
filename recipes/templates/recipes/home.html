@@ -1,19 +1,50 @@
 {% extends "recipes/base.html" %}
-<!-- -->
+
 {% block content %}
 <h1>Recipes:</h1>
-{% for recipe in recipes %}
-<div class="card my-4">
-  <div class="card-body">
-    <h5 class="card-title">{{ recipe.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ recipe.author }}</h6>
-    <p class="card-text">{{ recipe.description }}</p>
-    <h6 class="card-subtitle mb-2 text-muted">
-      {{ recipe.updated_at|date:"F d, Y" }}
-    </h6>
-    <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link">View Recipe</a>
-  </div>
+
+<div class="card-deck">
+    {% if page_obj %}
+        {% for recipe in page_obj %}
+            <div class="card my-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ recipe.author }}</h6>
+                    <p class="card-text">{{ recipe.description }}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ recipe.updated_at|date:"F d, Y" }}
+                    </h6>
+                    <a href="{% url 'recipes-detail' recipe.pk %}" class="card-link">View Recipe</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No recipes found.</p>
+    {% endif %}
+
 </div>
-{% endfor %}
-<!-- -->
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-end">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo; Previous</a></li>
+        {% else %}
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+        
+        {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+                <li class="page-item active"><span class="page-link">{{ num }} <span class="sr-only"></span></span></li>
+            {% elif num > page_obj.number|add:1 %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next &raquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+    </ul>
+</nav>
 {% endblock content %}
