@@ -56,5 +56,23 @@
       border-color:rgb(0, 0, 0); 
       box-shadow: 0 0 5px rgba(0, 0, 0, 0); 
     }
+
+    /* Custom gray pagination styles */
+.pagination .page-item .page-link {
+    color:rgb(0, 0, 0); /* Gray color for the links */
+    border-color:rgb(177, 177, 177); /* Gray border for the links */
+}
+
+.pagination .page-item.active .page-link {
+    background-color:rgb(214, 214, 214); /* Gray background for the active page */
+    border-color:rgb(187, 187, 187); /* Same border color for the active link */
+}
+
+/* Hover effect */
+.pagination .page-item:hover .page-link {
+    color: #495057; /* Darker gray on hover */
+    border-color:rgb(187, 187, 187); /* Darker border on hover */
+}
+
   </style>
 {% endblock content %}
