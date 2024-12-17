@@ -40,9 +40,9 @@
         <div class="card my-4 p-3">
             <a class="d-flex align-items-start text-decoration-none text-reset" href="{% url 'recipes-detail' recipe.pk %}">
                 {% if recipe.image %}
-                    <img src="{{ recipe.image.url }}" alt="Recipe Image" class="img-fluid me-3" style="height: 100px; width: auto; object-fit: cover;">
+                    <img src="{{ recipe.image.url }}" alt="Recipe Image" class="img-fluid me-3" style="height: auto; width: 200px; object-fit: cover;">
                 {% else %}
-                    <img src="{% static 'images/default.jpg' %}" alt="Default Image" class="img-fluid me-3" style="height: 50px; width: auto; object-fit: cover;">
+                    <img src="{% static 'images/default.jpg' %}" alt="Default Image" class="img-fluid me-3" style="height: auto; width: 200px; object-fit: cover;">
                 {% endif %}
                 <div>
                     <h5 class="card-title fs-1 fs-sm-3 fs-md-4">{{ recipe.title }}</h5>
