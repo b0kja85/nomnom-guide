@@ -14,6 +14,15 @@ class Recipe(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
+  upvotes = models.ManyToManyField(User, related_name='upvoted_recipes', blank=True)
+  downvotes = models.ManyToManyField(User, related_name='downvoted_recipes', blank=True)
+
+  def upvote_count(self):
+      return self.upvotes.count()
+
+  def downvote_count(self):
+      return self.downvotes.count()
+
   def get_absolute_url(self):
       return reverse("recipes-detail", kwargs={"pk": self.pk})
 
