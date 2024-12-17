@@ -8,7 +8,7 @@ class Recipe(models.Model):
   description = models.TextField()
   ingredients = models.TextField()
   instructions = models.TextField()
-
+  image = models.ImageField(upload_to='recipe_images/', null=True, blank=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE)
 
   created_at = models.DateTimeField(auto_now_add=True)

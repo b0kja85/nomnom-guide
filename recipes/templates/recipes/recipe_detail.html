@@ -5,7 +5,11 @@
 {% block content %}
 <div class="d-flex align-items-center">
   <div class="me-3">
-      <img src="{% static 'images/wew.jpg' %}" alt="Image" class="img-fluid" style="max-width: 320px;">
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}" alt="Recipe Image" class="img-fluid" style="max-width: 320px;">
+    {% else %}
+        <img src="{% static 'images/wew.jpg' %}" alt="Default Image" class="img-fluid" style="max-width: 320px;">
+    {% endif %}
   </div>
   <div>
       <h1>{{ object.title }}</h1>
