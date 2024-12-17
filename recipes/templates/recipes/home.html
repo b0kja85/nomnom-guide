@@ -20,6 +20,17 @@
     </form>
 </div>
 
+<div class="d-flex justify-content-between mb-3">
+    <!-- Sorting Dropdown -->
+    <form method="get" action="{% url 'recipes-home' %}">
+        <input type="hidden" name="q" value="{{ query }}">
+        <select name="sort" class="form-select" onchange="this.form.submit()">
+            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest</option>
+            <option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>Oldest</option>
+        </select>
+    </form>
+</div>
+
 {% load static %}
 
 <div class="card-deck">
