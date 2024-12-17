@@ -14,24 +14,32 @@ class RecipeListView(ListView):
 
     def get_queryset(self):
         """
-        Filter recipes based on the search query.
+        Filter recipes based on the search query and sorting order.
         """
         query = self.request.GET.get('q')
+        sort = self.request.GET.get('sort', 'newest')  
+
+        queryset = models.Recipe.objects.all()
+
         if query:
-            return models.Recipe.objects.filter(
+            queryset = queryset.filter(
                 Q(title__icontains=query) | Q(description__icontains=query)
             )
-        return models.Recipe.objects.all()
+
+        if sort == 'oldest':
+            queryset = queryset.order_by('created_at')  
+        else:
+            queryset = queryset.order_by('-created_at')  
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         """
-        Add search query and page object to the context.
+        Add search query, sort order, and page object to the context.
         """
         context = super().get_context_data(**kwargs)
         context['query'] = self.request.GET.get('q', '')
-        paginator = context['paginator']
-        page_obj = paginator.get_page(self.request.GET.get('page'))
-        context['page_obj'] = page_obj
+        context['sort'] = self.request.GET.get('sort', 'newest')  
         return context
 
 class RecipeDetailView(DetailView):
